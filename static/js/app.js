@@ -3,7 +3,7 @@
 
 // FUNCTION #1 of 4
 function buildCharts(patientID) {
-    
+
     // READ & INTERPRET THE DATA
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -11,11 +11,12 @@ function buildCharts(patientID) {
     d3.json("samples.json").then((data => {
         console.log(data)
 
-        //filter by patient ID
+        // Define samples
         var samples = data.samples
         console.log(samples[0])
-        var filteredSample = samples.filter(bacteriaInfo => bacteriaInfo.id === patientID)[0]
 
+        // Filter by patient ID
+        var filteredSample = samples.filter(bacteriaInfo => bacteriaInfo.id === patientID)[0]
 
         // BAR CHART - NOTE: do console logs to check
         // Grab sample_values for the bar chart
@@ -28,13 +29,52 @@ function buildCharts(patientID) {
         var otu_labels = filteredSample.otu_labels
 
         // Filter for top 10 otu-ids
+        var top_ten = otu_ids.filter()
 
         // BUBBLE CHART
-        // Use otu_ids for the x values
-        // Use sample_values for the y values
-        // Use sample_values for the marker size
-        // Use otu_ids for the marker colors
-        // Use otu_labels for the text values
+        // Create the trace
+        var trace1 = {
+            // Use otu_ids for the x values
+            x: otu_ids,
+            // Use sample_values for the y values
+            y: sample_values,
+            // Use otu_labels for the text values
+            text: otu_labels,
+            mode: 'markers',
+            marker: {
+                // Use otu_ids for the marker colors
+                color: otu_ids,
+                // Use sample_values for the marker size
+                size: sample_values
+            }
+        };
+
+        var data = [trace1];
+
+        // Define plot layout
+        var layout = {
+            title: "Belly Button Samples",
+            xaxis: { title: "OTU IDs" },
+            yaxis: { title: "Sample Values" }
+        };
+
+        // Display plot
+        Plotly.newPlot('bubble', data, layout)
+
+        // GAUGE CHART
+        // SAMPLE FROM PLOTLY DOCUMENTATION
+        // var data = [
+        //     {
+        //         domain: { x: [0, 1], y: [0, 1] },
+        //         value: 270,
+        //         title: { text: "Speed" },
+        //         type: "indicator",
+        //         mode: "gauge+number"
+        //     }
+        // ];
+
+        // var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+        // Plotly.newPlot('myDiv', data, layout);
 
         // DISPLAY SAMPLE METADATA (1 person's demographic data)
 
