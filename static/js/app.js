@@ -44,7 +44,7 @@ function buildCharts(patientID) {
 
         // Define plot layout
         var bar_layout = {
-            title: "Top 10 Belly Button Samples",
+            title: "Top 10 Microbial Species in Belly Button",
             xaxis: { title: "Bacteria Sample Values" },
             yaxis: { title: "OTU IDs" }
         };
