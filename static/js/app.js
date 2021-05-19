@@ -38,13 +38,18 @@ function buildCharts(patientID) {
             // Use otu_labels for the text values
             text: otu_labels.slice(0, 10).reverse(),
             type: 'bar',
-            orientation: 'h'
-        }];
+            orientation: 'h',
+            marker: {
+                color: 'rgb(242, 113, 102)'
+            },
+        }]
+
+
 
 
         // Define plot layout
         var bar_layout = {
-            title: "Top 10 Microbial Species in Belly Button",
+            title: "Top 10 Microbial Species in Belly Buttons",
             xaxis: { title: "Bacteria Sample Values" },
             yaxis: { title: "OTU IDs" }
         };
@@ -66,7 +71,8 @@ function buildCharts(patientID) {
                 // Use otu_ids for the marker colors
                 color: otu_ids,
                 // Use sample_values for the marker size
-                size: sample_values
+                size: sample_values,
+                colorscale: 'YlOrRd'
             }
         }];
 
@@ -90,16 +96,20 @@ function buildCharts(patientID) {
             {
                 domain: { x: [0, 1], y: [0, 1] },
                 value: washFreq,
-                title: { text: "Washing Frequency (Times per Week" },
+                title: { text: "Washing Frequency (Times per Week)" },
                 type: "indicator",
                 mode: "gauge+number",
                 gauge: {
+                    bar: {color: 'white'},
                     axis: { range: [null, 9] },
                     steps: [
-                        { range: [0, 3], color: "white" },
-                        { range: [3, 6], color: "white" },
-                        { range: [7, 9], color: "white" },
+                        { range: [0, 3], color: 'rgb(253, 162, 73)' },
+                        { range: [3, 6], color: 'rgb(242, 113, 102)' },
+                        { range: [6, 9], color: 'rgb(166, 77, 104)' },
                     ],
+                    // threshold: {
+                    //     line: { color: "white" },
+                    // }
                 }
             }
         ];
