@@ -9,5 +9,7 @@ The dashboard includes:
 * bubble chart featuring all microbial species
 * gauge of the frequency of belly button washes weekly for each individual
 
+![Dashboard Screenshot](https://github.com/ruthhinkle/kickstarter-analysis/blob/main/static/img/index-screenshot.png)
+
 
 
